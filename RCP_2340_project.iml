@@ -90,7 +90,10 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.springframework:spring-jms:3.1.0.RELEASE" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.springframework:spring-orm:3.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.1.1" level="project" />
+<<<<<<< HEAD
     <orderEntry type="library" name="Maven: com.sun:tools:1.6.0_31" level="project" />
+=======
+>>>>>>> plugins
   </component>
 </module>
 
