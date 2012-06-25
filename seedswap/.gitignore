@@ -50,6 +50,7 @@ Thumbs.db
 /*.tmproj
 /ivy*
 /eclipse
+/.idea
 
 # default HSQL database files for production mode
 /prodDb.*
