@@ -1,92 +1,42 @@
-<!doctype html>
-<html>
-	<head>
-		<meta name="layout" content="main"/>
-		<title>Welcome to SeedSwap</title>
-		<style type="text/css" media="screen">
-			#status {
-				background-color: #eee;
-				border: .2em solid #fff;
-				margin: 2em 2em 1em;
-				padding: 1em;
-				width: 12em;
-				float: left;
-				-moz-box-shadow: 0px 0px 1.25em #ccc;
-				-webkit-box-shadow: 0px 0px 1.25em #ccc;
-				box-shadow: 0px 0px 1.25em #ccc;
-				-moz-border-radius: 0.6em;
-				-webkit-border-radius: 0.6em;
-				border-radius: 0.6em;
-			}
+                <html>
+                    <head>
+                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                        <meta name="layout" content="main" />
+                    <title>User Login</title>
+                    </head>
+                    <body>
+                        <div class="body">
+                            <g:form action="doLogin" method="post" controller="user">
+                                <div class="dialog">
+                                    <p>Enter your login details below:</p>
+                                <table class="userForm">
+                                    <tr class='prop'>
+                                        <td valign='top' style='text-align:left;' width='20%'>
+                                            <label for='email'>Email:</label>
+                                        </td>
+                                        <td valign='top' style='text-align:left;' width='80%'>
+                                            <input id="email" type='text' name='email' value='${user?.email}' />
+                                         </td>
+                                    </tr>
 
-			.ie6 #status {
-				display: inline; /* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
-			}
+                                    <tr class='prop'>
+                                        <td valign='top' style='text-align:left;' width='20%'>
+                                            <label for='password'>Password:</label>
+                                        </td>
+                                        <td valign='top' style='text-align:left;' width='80%'>
+                                            <input id="password" type='password' name='password'
+                                                value='${user?.password}' />
+                                        </td>
+                                    </tr>
 
-			#status ul {
-				font-size: 0.9em;
-				list-style-type: none;
-				margin-bottom: 0.6em;
-				padding: 0;
-			}
-            
-			#status li {
-				line-height: 1.3;
-			}
-
-			#status h1 {
-				text-transform: uppercase;
-				font-size: 1.1em;
-				margin: 0 0 0.3em;
-			}
-
-			#page-body {
-				margin: 2em 1em 1.25em 18em;
-			}
-
-			h2 {
-				margin-top: 1em;
-				margin-bottom: 0.3em;
-				font-size: 1em;
-			}
-
-			p {
-				line-height: 1.5;
-				margin: 0.25em 0;
-			}
-
-			#controller-list ul {
-				list-style-position: inside;
-			}
-
-			#controller-list li {
-				line-height: 1.3;
-				list-style-position: inside;
-				margin: 0.25em 0;
-			}
-
-			@media screen and (max-width: 480px) {
-				#status {
-					display: none;
-				}
-
-				#page-body {
-					margin: 0 1em 1em;
-				}
-
-				#page-body h1 {
-					margin-top: 0;
-				}
-			}
-		</style>
-	</head>
-	<body>
-	    <g:form controller="user" action="login" style="padding-left:200px">
-            <div style="width:220px">
-                <label>Name:</label> <input type="text" name="username"/>
-                <label>Password:</label> <input type="password" name="password"/>
-                <label>&nbsp;</label> <input type="submit" value="login"/>
-            </div>
-        </g:form>
-	</body>
-</html>
+                                </table>
+                                </div>
+                                <div class="buttons">
+                                    <span class="formButton">
+                                        <input type="submit" value="Login"></input>
+                                    </span>
+                                </div>
+                            </g:form>
+                        </div>
+                    </body>
+                </html>

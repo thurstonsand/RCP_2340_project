@@ -2,10 +2,18 @@ package seedswap
 
 class UserController {
 
-    def index() { }
+    def index = { }
 
-    def login() {
-        if(params.username == "admin" && params.password == "pass") render "login success"
-        else render "login fail"
+    def login = { }
+
+    def doLogin = {
+          def user = Farmer.findWhere(email:params['email'],password:params['password'])
+          session.user = user
+        if(user){
+            render "Login successful"
+        }
+        else{
+            render "Login failed"
+        }
     }
 }
