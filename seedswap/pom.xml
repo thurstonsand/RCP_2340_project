@@ -31,7 +31,7 @@
         <version>${grails.version}</version>
         <scope>test</scope>
     </dependency>    
-    
+
     <dependency>
         <groupId>org.grails.plugins</groupId>
         <artifactId>tomcat</artifactId>
@@ -39,7 +39,7 @@
         <type>zip</type>
         <scope>provided</scope>
     </dependency>
-    
+
     <dependency>
         <groupId>org.grails.plugins</groupId>
         <artifactId>hibernate</artifactId>
@@ -119,8 +119,8 @@
         <artifactId>grails-maven-plugin</artifactId>
         <version>${grails.version}</version>
         <configuration>
-            <fork></fork>
-        </configuration>        
+            <fork>true</fork>
+        </configuration>
         <extensions>true</extensions>
         <executions>
           <execution>
