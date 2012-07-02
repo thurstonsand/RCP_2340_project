@@ -9,6 +9,7 @@ class Farmer {
     String toString(){
         "$email"
     }
+
     //A valid Farmer object must have an email address and a non-blank password
     static constraints = {
         email email:true
