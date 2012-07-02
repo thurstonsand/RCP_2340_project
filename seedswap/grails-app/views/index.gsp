@@ -10,6 +10,7 @@
                     <body>
                         <div class="body" id="userContainer">
                             <g:form action="doLogin" method="post" controller="user">
+                            <g:renderErrors bean="${user}" />
                                 <div class="dialog">
                                     <p>Enter your login details below:</p>
                                     <table class="userForm">

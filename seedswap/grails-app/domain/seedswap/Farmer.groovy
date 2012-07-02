@@ -5,6 +5,7 @@ class Farmer {
 
     String password;
     String email;
+    int attempts = 0;
 
     String toString(){
         "$email"
@@ -14,5 +15,6 @@ class Farmer {
     static constraints = {
         email email:true
         password blank:false, password:true
+        attempts max:3
     }
 }
