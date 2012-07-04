@@ -8,6 +8,7 @@ class UserController {
     }
 
     def signup = { }
+    def login = { }
 
     //Login validation takes place here
     def doLogin = { LoginCommand cmd ->

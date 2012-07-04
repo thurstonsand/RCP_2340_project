@@ -28,7 +28,7 @@
             <input type="submit" value="Sign up"></input>
                 <input type="reset">
                 <br>Already have an account?
-                <input type="submit" value="Login here" onclick="window.location=''"></input>
+                <g:remoteLink action="login" controller="user" update="userContainer">Login Here</g:remoteLink>
             </span>
     </div>
 </g:formRemote>
