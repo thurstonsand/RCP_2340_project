@@ -3,30 +3,41 @@ package seedswap
 //This controller defines actions associated with the farmer class.
 class UserController {
 
-    def index = { }
+    def index = {
+
+    }
 
     def signup = { }
 
     //Login validation takes place here
-    def doLogin = {
-        if(request.method == 'POST') {
-          //Checks the email and password entered in the text box against the values stored in
-          //the database, and adds this as a session variable called "user"
-          def user = Farmer.findWhere(email:params['email'],password:params['password'])
-          session.user = user
-        //If user is true (i.e. the password and login are valid and match the database),
-        //the login is a success.
-        if(user){
-            render "Login successful"
-            //redirect(url: "/")
-        }
-        else{
-            flash.message = "Login failed"
-            //redirect(url: "/")
-            //failAttempt
-        }
+    def doLogin = { LoginCommand cmd ->
+        if (request.method == 'POST') {
+            if(cmd.hasErrors()) {
+                render(view: 'login', model: [cmd: cmd])
+                return
+            }
+            //Checks the email and password entered in the text box against the values stored in
+            //the database, and adds this as a session variable called "user"
+            def user = Farmer.findWhere(email:cmd.email,password:cmd.password)
+            session.user = user
+            //If user is true (i.e. the password and login are valid and match the database),
+            //the login is a success.
+            if(user){
+                render "Login successful"
+                //redirect(url: "/")
+            }
+            else{
+                user = Farmer.findWhere(email:cmd.email)
+                session.user = user
+                if(user) {
+                    def attempt = user.attempts
+                    attempt += 1
+                    attempt.save()
+                }
+                render(view: 'login', model: [msg: "Login Failed"])
+            }
         } else if (session.user) {
-            redirect(url: "/")
+            redirect(url: "/seedswap")
         }
     }
 
@@ -41,21 +52,21 @@ class UserController {
             } else {
                 // validate/save ok, store user in session, redirect to homepage
                 session.user = user
-                redirect(url:"/")
+                redirect(url:"/seedswap")
             }
         } else if (session.user) {
             // don't allow registration while user is logged in
-            redirect(url: "/")
+            redirect(url: "/seedswap")
         }
     }
+}
 
-//    def failAttempt = {
-//        def user = Farmer.findWhere(email:params['email'])
-//        session.user = user
-//        if(user) {
-//            def attempt = Farmer.get(params.id)
-//            attempt.attempts = params.attempts + 1
-//            attempt.save()
-//        }
-//    }
+class LoginCommand {
+    String email
+    String password
+
+    static constraints = {
+        email(blank: false)
+        password(blank: false)
+    }
 }

@@ -1,4 +1,4 @@
-<g:formRemote name="register" update="userContainer" url="[controller:'user', action:'register']">
+<g:formRemote name="signup" update="userContainer" url="[controller:'user', action:'register']">
     <g:renderErrors bean="${user}" />
     <div class="dialog">
         <p>Enter the following information to set up an account:</p>
