@@ -1,11 +1,15 @@
 package seedswap
-//This class represents a farmer with an associated password and email address.
+//This class represents a farmer with an associated password, email address and lock account status.
 //Additional variables will be added as needed.
 class Farmer {
 
     String password;
     String email;
-    int attempts = 0;
+    boolean locked;
+
+    public Farmer() {
+        this.locked = false
+    }
 
     String toString(){
         "$email"
@@ -15,6 +19,5 @@ class Farmer {
     static constraints = {
         email email:true
         password blank:false, password:true
-        attempts max:3
     }
 }

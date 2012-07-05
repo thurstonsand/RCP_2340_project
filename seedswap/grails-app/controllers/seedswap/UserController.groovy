@@ -2,6 +2,7 @@ package seedswap
 
 //This controller defines actions associated with the farmer class.
 class UserController {
+    def MAX_LOGIN_ATTEMPT = 3;
 
     def index = {
 
@@ -19,26 +20,39 @@ class UserController {
             }
             //Checks the email and password entered in the text box against the values stored in
             //the database, and adds this as a session variable called "user"
-            def user = Farmer.findWhere(email:cmd.email,password:cmd.password)
-            session.user = user
-            //If user is true (i.e. the password and login are valid and match the database),
-            //the login is a success.
-            if(user){
-                render "Login successful"
-                //redirect(url: "/")
-            }
-            else{
-                user = Farmer.findWhere(email:cmd.email)
-                session.user = user
-                if(user) {
-                    def attempt = user.attempts
-                    attempt += 1
-                    attempt.save()
+            def user = Farmer.findWhere(email:cmd.email)
+
+            //If user is true (associated with an email and the account is not locked, log the attempt
+            if(user && !user.locked) {
+                def attempt = new LoginAttempt(farmer: user)
+                attempt.success = user.password == cmd.password
+                attempt.save()
+                //if the attempt was successful, set the session and load seed listing
+                if(attempt.success) {
+                    session.user = user
+                    render "Login successful"
+                    return
+                    //if the login failed, increment fail count
+                } else {
+                    def attempts = LoginAttempt.findAll("from LoginAttempt where farmer = :farmer order by attemptAt desc", [farmer: user], [max: MAX_LOGIN_ATTEMPT]);
+                    def consecutiveFails = 0
+                    attempts.each() { att ->
+                        if(!att.success) {
+                            consecutiveFails++;
+                        }
+                    }
+
+                    //if the fail count is >= the maximum login attempts, lock the account
+                    if(consecutiveFails >= MAX_LOGIN_ATTEMPT) {
+                        user.locked = true;
+                        user.save()
+                    }
                 }
-                render(view: 'login', model: [msg: "Login Failed"])
             }
+            def msg = user.locked? "Your account has been locked" : "Login Failed"
+            render(view: 'login', model: [msg: msg])
         } else if (session.user) {
-            redirect(url: "/seedswap")
+            redirect(action: "login")
         }
     }
 
@@ -53,15 +67,16 @@ class UserController {
             } else {
                 // validate/save ok, store user in session, redirect to homepage
                 session.user = user
-                redirect(url:"/seedswap")
+                redirect(action:"login")
             }
         } else if (session.user) {
             // don't allow registration while user is logged in
-            redirect(url: "/seedswap")
+            redirect(action: "login")
         }
     }
 }
 
+//login wrapper
 class LoginCommand {
     String email
     String password
