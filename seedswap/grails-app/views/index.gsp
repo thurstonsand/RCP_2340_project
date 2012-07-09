@@ -14,10 +14,10 @@
                                 <table class="userForm">
                                     <tr class='prop'>
                                         <td valign='top' style='text-align:left;' width='20%'>
-                                            <label for='email'>Email:</label>
+                                            <label for='username'>Username:</label>
                                         </td>
                                         <td valign='top' style='text-align:left;' width='80%'>
-                                            <input id="email" type='text' name='email' value='${user?.email}' />
+                                            <input id="username" type='text' name='username' value='${user?.username}' />
                                          </td>
                                     </tr>
 
