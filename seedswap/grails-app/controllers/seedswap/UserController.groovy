@@ -49,7 +49,7 @@ class UserController {
                     }
                 }
             }
-            def msg = user.locked? "Your account has been locked" : "Login Failed"
+            def msg = user && user.locked? "Your account has been locked" : "Login Failed"
             render(view: 'login', model: [msg: msg])
         } else if (session.user) {
             redirect(action: "login")
