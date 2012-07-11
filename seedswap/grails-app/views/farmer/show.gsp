@@ -29,34 +29,7 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${farmerInstance?.password}">
-				<li class="fieldcontain">
-					<span id="password-label" class="property-label"><g:message code="farmer.password.label" default="Password" /></span>
-					
-						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${farmerInstance}" field="password"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${farmerInstance?.locked}">
-				<li class="fieldcontain">
-					<span id="locked-label" class="property-label"><g:message code="farmer.locked.label" default="Locked" /></span>
-					
-						<span class="property-value" aria-labelledby="locked-label"><g:formatBoolean boolean="${farmerInstance?.locked}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${farmerInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="farmer.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${farmerInstance}" field="name"/></span>
-					
-				</li>
-				</g:if>
-			
+
 				<g:if test="${farmerInstance?.climateZone}">
 				<li class="fieldcontain">
 					<span id="climateZone-label" class="property-label"><g:message code="farmer.climateZone.label" default="Climate Zone" /></span>
@@ -99,8 +72,9 @@
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${farmerInstance?.id}" />
-					<g:link class="edit" action="edit" id="${farmerInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    <g:if test="${session.user.id==farmerInstance.id}">
+					    <g:link class="edit" action="edit" id="${farmerInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                    </g:if>
 				</fieldset>
 			</g:form>
 		</div>

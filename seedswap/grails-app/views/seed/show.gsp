@@ -5,32 +5,24 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'seed.label', default: 'Seed')}" />
-		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<title>created ${seedInstance.name}</title>
 	</head>
 	<body>
 		<a href="#show-seed" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<li><a class="home" href="${createLink(uri: '/farmer/list')}"><g:message code="default.home.label"/></a></li>
+                <g:if test="${session.user.id==seedInstance.farmer.id}">
+				    <li><g:link class="show" action="show" controller="farmer" id="${session.user.id}">back to Bio</g:link></li>
+                </g:if>
 			</ul>
 		</div>
 		<div id="show-seed" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+			<h1>${seedInstance.farmer.name}'s seed: ${seedInstance.name}</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list seed">
-			
-				<g:if test="${seedInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="seed.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${seedInstance}" field="name"/></span>
-					
-				</li>
-				</g:if>
 			
 				<g:if test="${seedInstance?.scientificName}">
 				<li class="fieldcontain">
@@ -86,21 +78,14 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${seedInstance?.farmer}">
-				<li class="fieldcontain">
-					<span id="farmer-label" class="property-label"><g:message code="seed.farmer.label" default="Farmer" /></span>
-					
-						<span class="property-value" aria-labelledby="farmer-label"><g:link controller="farmer" action="show" id="${seedInstance?.farmer?.id}">${seedInstance?.farmer?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
 			</ol>
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${seedInstance?.id}" />
-					<g:link class="edit" action="edit" id="${seedInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    <g:if test="${session.user.id==seedInstance.farmer.id}">
+					    <g:link class="edit" action="edit" id="${seedInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+    					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    </g:if>
 				</fieldset>
 			</g:form>
 		</div>

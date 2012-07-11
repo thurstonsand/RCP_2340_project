@@ -32,7 +32,7 @@ class Farmer {
         password blank:false, password:true, display:false
         locked display:false, editable:false, widget:'hiddenField'
         name name:true, blank:false
-        climateZone nullable:true, widget:'textbox'
+        climateZone nullable:true, widget:'textbox', max:8
         address nullable:true, widget:'textarea'
         interests nullable:true, widget:'textarea'
         //role inList: ["user, admin"]

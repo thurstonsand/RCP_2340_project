@@ -58,11 +58,12 @@
 	<g:datePicker name="growingSeason" precision="day"  value="${seedInstance?.growingSeason}" default="none" noSelection="['': '']" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: seedInstance, field: 'farmer', 'error')} required">
+<!--<div class="fieldcontain ${hasErrors(bean: seedInstance, field: 'farmer', 'error')} required">
 	<label for="farmer">
 		<g:message code="seed.farmer.label" default="Farmer" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="farmer" name="farmer.id" from="${seedswap.Farmer.list()}" optionKey="id" required="" value="${seedInstance?.farmer?.id}" class="many-to-one"/>
-</div>
+</div> -->
+<g:hiddenField id="farmer" name="farmer.id" value="${seedInstance?.farmer?.id}"/>
 
