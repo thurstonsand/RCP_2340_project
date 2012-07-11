@@ -45,10 +45,10 @@ class UserController {
                     session.user = user
 
                     if(user.isAdmin) {
-                        redirect (action: "adminList")
+                        redirect (action: "adminList", controller: "user")
+                        return
                     }
-                    render "login success"
-                    //redirect(action: "adminList")
+                    redirect(action: "list", controller:"farmer")
                     return
                     //if the login failed, increment fail count
                 } else {
