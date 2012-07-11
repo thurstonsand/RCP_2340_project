@@ -5,7 +5,7 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'seed.label', default: 'Seed')}" />
-		<title>created ${seedInstance.name}</title>
+		<title>${seedInstance.name}</title>
 	</head>
 	<body>
 		<a href="#show-seed" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
