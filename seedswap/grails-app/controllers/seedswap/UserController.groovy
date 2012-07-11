@@ -11,6 +11,17 @@ class UserController {
     def signup = { }
     def login = { }
 
+    def adminList = {
+        render(view: 'adminList', model: [userList: Farmer.list()])
+    }
+
+    def unlock = {
+        def user = Farmer.get(params.id)
+        user.locked = false;
+        user.save()
+        this.adminList()
+    }
+
     //Login validation takes place here
     def doLogin = { LoginCommand cmd ->
         if (request.method == 'POST') {
@@ -30,7 +41,12 @@ class UserController {
                 //if the attempt was successful, set the session and load seed listing
                 if(attempt.success) {
                     session.user = user
-                    render "Login successful"
+
+                    if(user.isAdmin) {
+                        redirect (action: "adminList")
+                    }
+                    render "login success"
+                    //redirect(action: "adminList")
                     return
                     //if the login failed, increment fail count
                 } else {

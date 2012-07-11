@@ -6,9 +6,11 @@ class Farmer {
     String password;
     String email;
     boolean locked;
+    boolean isAdmin;
 
     public Farmer() {
         this.locked = false
+        this.isAdmin = false
     }
 
     String toString(){
