@@ -5,13 +5,20 @@
         <table>
             <tr class='prop'>
                 <td valign='top' style='text-align:left;' width='20%'>
+                    <label for='name'>Name:</label>
+                </td>
+                <td valign='top' style='text-align:left;' width='80%'>
+                    <input id="name" type='text' name='name' value='${user?.name}' />
+                 </td>
+            </tr>
+            <tr class='prop'>
+                <td valign='top' style='text-align:left;' width='20%'>
                     <label for='email'>Email:</label>
                 </td>
                 <td valign='top' style='text-align:left;' width='80%'>
                     <input id="email" type='text' name='email' value='${user?.email}' />
-                 </td>
+                </td>
             </tr>
-
             <tr class='prop'>
                 <td valign='top' style='text-align:left;' width='20%'>
                     <label for='password'>Password:</label>
