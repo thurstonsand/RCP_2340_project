@@ -32,8 +32,6 @@ class UserController {
             //Checks the email and password entered in the text box against the values stored in
             //the database, and adds this as a session variable called "user"
             def user = Farmer.findWhere(email:cmd.email)
-            //render user.name
-            //return
 
             //If user is true (associated with an email and the account is not locked, log the attempt
             if(user && !user.locked) {
@@ -43,13 +41,13 @@ class UserController {
                 //if the attempt was successful, set the session and load seed listing
                 if(attempt.success) {
                     session.user = user
-
-                    if(user.isAdmin) {
+                    if(user.role=="admin") {
                         redirect (action: "adminList", controller: "user")
                         return
-                    }
+                    } else{
                     redirect(action: "list", controller:"farmer")
                     return
+                    }
                     //if the login failed, increment fail count
                 } else {
                     def attempts = LoginAttempt.findAll("from LoginAttempt where farmer = :farmer order by attemptAt desc", [farmer: user], [max: MAX_LOGIN_ATTEMPT]);

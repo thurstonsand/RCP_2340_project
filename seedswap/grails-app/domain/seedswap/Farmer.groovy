@@ -6,7 +6,7 @@ class Farmer {
     String password;
     String email;
     boolean locked;
-    boolean isAdmin;
+    String role
     String name
     int climateZone
     String address
@@ -19,7 +19,7 @@ class Farmer {
 
     public Farmer() {
         this.locked = false
-        this.isAdmin = false
+        this.role = "user"
     }
 
     String toString(){
@@ -35,5 +35,6 @@ class Farmer {
         climateZone nullable:true, widget:'textbox'
         address nullable:true, widget:'textarea'
         interests nullable:true, widget:'textarea'
+        //role inList: ["user, admin"]
     }
 }

@@ -5,7 +5,7 @@ import seedswap.Farmer
 class BootStrap {
 
     def init = { servletContext ->
-        new Farmer(email:"farmerjoe@seeds.net",password:"i<3seeds", isAdmin: true,name: "joe").save()
+        new Farmer(email:"farmerjoe@seeds.net",password:"i<3seeds",name: "joe", role: "admin").save()
     }
     //No need to delete users yet, but this is where it will be handled
     def destroy = { }
