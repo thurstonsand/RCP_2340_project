@@ -6,6 +6,7 @@ class Farmer {
     String password;
     String email;
     boolean locked;
+    boolean isAdmin;
     String name
     int climateZone
     String address
@@ -18,6 +19,7 @@ class Farmer {
 
     public Farmer() {
         this.locked = false
+        this.isAdmin = false
     }
 
     String toString(){
