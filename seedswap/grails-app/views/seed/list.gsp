@@ -17,6 +17,8 @@
 			<table>
 				<thead>
 					<tr>
+                        <g:sortableColumn property="date" title="${message(code: 'seed.creationDate.label', default: 'Date')}" />
+
 						<g:sortableColumn property="name" title="${message(code: 'seed.name.label', default: 'Name')}" />
 					
 						<g:sortableColumn property="scientificName" title="${message(code: 'seed.scientificName.label', default: 'Scientific Name')}" />
@@ -34,9 +36,11 @@
 				<tbody>
 				<g:each in="${seedInstanceList}" status="i" var="seedInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${seedInstance.id}">${fieldValue(bean: seedInstance, field: "name")}</g:link></td>
-					
+
+						<td><g:formatDate format="yyyy-MM-dd" date="${seedInstance.creationDate}"/></td>
+
+                        <td><g:link action="show" id="${seedInstance.id}">${fieldValue(bean: seedInstance, field: "name")}</g:link></td>
+
 						<td>${fieldValue(bean: seedInstance, field: "scientificName")}</td>
 					
 						<td>${fieldValue(bean: seedInstance, field: "hardiness")}</td>
