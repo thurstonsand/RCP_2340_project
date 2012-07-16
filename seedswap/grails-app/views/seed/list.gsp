@@ -17,7 +17,7 @@
 			<table>
 				<thead>
 					<tr>
-                        <g:sortableColumn property="date" title="${message(code: 'seed.creationDate.label', default: 'Date')}" />
+                        <g:sortableColumn property="creationDate" title="${message(code: 'seed.creationDate.label', default: 'Date')}" />
 
 						<g:sortableColumn property="name" title="${message(code: 'seed.name.label', default: 'Name')}" />
 					
