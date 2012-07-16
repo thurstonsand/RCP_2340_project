@@ -5,16 +5,32 @@ class UserController {
     def MAX_LOGIN_ATTEMPT = 3;
 
     def index = {
-
+        if(session.user) {
+            if(session.user.role == UserRole.ADMIN) {
+                redirect(action: "adminList", controller: "user")
+            } else{
+                redirect(action: "list", controller: "farmer")
+            }
+        } else {
+            render(view: 'login')
+        }
     }
 
     def signup = { }
-    def login = { }
 
+    def login = {}
+
+    // Used for AJAX to return only the content of the form
+    def loginForm = {
+        render(view: '_loginForm')
+    }
+
+    //renders the administrator view
     def adminList = {
         render(view: 'adminList', model: [userList: Farmer.list()])
     }
 
+    //unlocks a locked account
     def unlock = {
         def user = Farmer.get(params.id)
         user.locked = false;
@@ -40,14 +56,14 @@ class UserController {
                 attempt.save()
                 //if the attempt was successful, set the session and load seed listing
                 if(attempt.success) {
-                    session.user = user
-                    if(user.role=="admin") {
-                        redirect (action: "adminList", controller: "user")
-                        return
+                    request.session.user = user
+                    if(user.role == UserRole.ADMIN) {
+                        redirect(action: "adminList", controller: "user")
                     } else{
-                    redirect(action: "list", controller:"farmer")
-                    return
+                        redirect(action: "list", controller: "farmer")
                     }
+
+                    return
                     //if the login failed, increment fail count
                 } else {
                     def attempts = LoginAttempt.findAll("from LoginAttempt where farmer = :farmer order by attemptAt desc", [farmer: user], [max: MAX_LOGIN_ATTEMPT]);
@@ -68,7 +84,7 @@ class UserController {
             def msg = user && user.locked? "Your account has been locked" : "Login Failed"
             render(view: 'login', model: [msg: msg])
         } else if (session.user) {
-            redirect(action: "login")
+            redirect(action: "list")
         }
     }
 

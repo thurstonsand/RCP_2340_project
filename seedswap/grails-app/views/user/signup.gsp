@@ -1,4 +1,4 @@
-<g:formRemote name="signup" update="userContainer" url="[controller:'user', action:'register']">
+<g:formRemote name="signup" update="layoutBody" url="[controller:'user', action:'register']">
     <g:renderErrors bean="${user}" />
     <div class="dialog">
         <p>Enter the following information to set up an account:</p>
@@ -35,7 +35,7 @@
             <input type="submit" value="Sign up"></input>
                 <input type="reset">
                 <br>Already have an account?
-                <g:remoteLink action="login" controller="user" update="userContainer">Login Here</g:remoteLink>
+                <g:remoteLink action="loginForm" controller="user" update="layoutBody">Login Here</g:remoteLink>
             </span>
     </div>
 </g:formRemote>
