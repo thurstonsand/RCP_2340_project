@@ -13,4 +13,7 @@
             <td>${fieldValue(bean: search, field: "hardiness")}</td>
         </tr>
     </g:each>
+        <g:if test="${searchResultList.size() == 0}">
+            <tr><td colspan=7 class="not-available">No results available for search term</td></tr>
+        </g:if>
 </table>
