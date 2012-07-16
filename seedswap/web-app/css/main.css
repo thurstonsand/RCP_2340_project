@@ -11,10 +11,10 @@ h1, h2, h3, h4, h5, h6 {
 /* BASE LAYOUT */
 
 html {
-	background-color: #ddd;
-	background-image: -moz-linear-gradient(center top, #aaa, #ddd);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #ddd));
-	background-image: linear-gradient(top, #aaa, #ddd);
+	background-color: #999;
+	background-image: -moz-linear-gradient(center top, #aaa, #999);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #999));
+	background-image: linear-gradient(top, #aaa, #999);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#aaaaaa', EndColorStr = '#dddddd');
 	background-repeat: no-repeat;
 	height: 100%;
@@ -46,11 +46,7 @@ body {
 	-webkit-box-shadow: 0 0 0.3em #255b17;
 	        box-shadow: 0 0 0.3em #255b17;
 	margin-top: 20px;
-	padding-top: 20px;
-}
-
-#grailsLogo {
-	background-color: #abbf78;
+	padding-top: 0px;
 }
 
 /* replace with .no-boxshadow body if you have modernizr available */
@@ -91,11 +87,6 @@ img {
 
 /* GENERAL */
 
-#grailsLogo a {
-	display: inline-block;
-	margin: 1em;
-}
-
 .content {
 }
 
@@ -109,8 +100,18 @@ img {
 	border: none;
 }
 
+.header {
+    background: #506B4D;
+    color: #000;
+    clear: both;
+    margin-top: none;
+    margin-bottom: none;
+    padding: 1em;
+
+}
+
 .footer {
-	background: #abbf78;
+	background: #506B4D;
 	color: #000;
 	clear: both;
 	font-size: 0.8em;
@@ -174,8 +175,8 @@ img {
 }
 
 .nav a:focus, .nav a:hover {
-	background-color: #999999;
-	color: #ffffff;
+	background-color: #506B4D;
+	color: rgb(219, 235, 218);
 	outline: none;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 }
@@ -478,7 +479,7 @@ th.desc a {
 }
 
 th:hover, tr:hover {
-	background: #E1F2B6;
+	background: rgb(219, 235, 218);
 }
 
 /* PAGINATION */
@@ -486,7 +487,7 @@ th:hover, tr:hover {
 .pagination {
 	border-top: 0;
 	margin: 0;
-	padding: 0.3em 0.2em;
+	padding: 0em 0em;
 	text-align: center;
 	   -moz-box-shadow: 0 0 3px 1px #AAAAAA;
 	-webkit-box-shadow: 0 0 3px 1px #AAAAAA;
@@ -499,7 +500,7 @@ th:hover, tr:hover {
 	color: #666666;
 	display: inline-block;
 	margin: 0 0.1em;
-	padding: 0.25em 0.7em;
+	padding: 0.2em 0.3em;
 	text-decoration: none;
 	   -moz-border-radius: 0.3em;
 	-webkit-border-radius: 0.3em;
@@ -553,8 +554,8 @@ th:hover, tr:hover {
 
 .buttons input:hover, .buttons input:focus,
 .buttons a:hover, .buttons a:focus {
-	background-color: #999999;
-	color: #ffffff;
+	background-color: rgb(219, 235, 218);
+	color: #506B4D;
 	outline: none;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 	   -moz-box-shadow: none;

@@ -16,6 +16,8 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
         <g:javascript library="jquery"></g:javascript>
 		<g:layoutHead/>
+	    <div class="header" role="contentinfo"></div>
+
 		<r:layoutResources />
 	</head>
 	<body>
@@ -24,13 +26,14 @@
             <div class="nav" role="navigation">
                 <ul>
                     <li><a class="home" href="${createLink(uri: '/farmer/list')}"><g:message code="default.home.label"/></a></li>
-                    <li><g:link action="show" id="${session.user.id}" controller="farmer">${session.user.name}'s Bio</g:link></li>
+                    <li><g:link action="list" controller="seed">Seeds</g:link></li>
                     <li>
                         <g:form url='[controller: "Seed", action: "search"]' name="search">
                             <input name="search" id="search" value="${seed?.search}" size="10"/> <input type="submit" value="Search" />
                         </g:form>
                     </li>
                     <li style="float:right"><g:link controller="user" action="logout">Logout</g:link></li>
+                    <li style="float:right"><g:link action="show" id="${session.user.id}" controller="farmer">My Profile</g:link></li>
                 </ul>
             </div>
         </g:if>
