@@ -596,3 +596,8 @@ a.skip {
 	position: absolute;
 	left: -9999px;
 }
+
+td.not-available {
+    color: #999;
+    text-align: center;
+}

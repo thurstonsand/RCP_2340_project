@@ -53,6 +53,10 @@
 					
 					</tr>
 				</g:each>
+				<g:if test="${seedInstanceList.size() == 0}">
+				    <tr><td colspan=7 class="not-available">No Seeds are currently available</td></tr>
+				</g:if>
+
 				</tbody>
 			</table>
 			<div class="pagination">
