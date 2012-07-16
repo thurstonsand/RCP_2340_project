@@ -6,6 +6,8 @@ class SeedController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    static layout = 'main'
+
     def index() {
         redirect(action: "list", params: params)
     }
@@ -79,6 +81,16 @@ class SeedController {
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'seed.label', default: 'Seed'), seedInstance.id])
         redirect(action: "show", id: seedInstance.id)
+    }
+
+    def search = {
+        if(request.method == 'POST') {
+            def term = "%" + params.search + "%"
+            def search = Seed.findAllByNameIlikeOrScientificNameIlikeOrHardiness(term, term, params.search)
+            render(view: "search", model: [searchResultList: search, search: search.size()])
+        } else {
+            redirect(view: 'list')
+        }
     }
 
     def delete(Long id) {
