@@ -97,8 +97,6 @@ class UserController {
                 // validation failed, render registration page again
                 render(view: 'signup', model: [user: user])
             } else {
-                // validate/save ok, store user in session, redirect to homepage
-                session.user = user
                 redirect(action:"login")
             }
         } else if (session.user) {
