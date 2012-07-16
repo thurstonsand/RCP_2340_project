@@ -23,7 +23,7 @@
 		<g:message code="seed.hardiness.label" default="Hardiness" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field type="number" name="hardiness" max="7" required="" value="${seedInstance.hardiness}"/>
+	<g:field type="number" name="hardiness" max="7" min="0" required="" value="${seedInstance.hardiness}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: seedInstance, field: 'specialRequirements', 'error')} ">
