@@ -9,14 +9,6 @@
 	</head>
 	<body>
 		<a href="#show-seed" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/farmer/list')}"><g:message code="default.home.label"/></a></li>
-                <g:if test="${session.user.id==seedInstance.farmer.id}">
-				    <li><g:link class="show" action="show" controller="farmer" id="${session.user.id}">back to Bio</g:link></li>
-                </g:if>
-			</ul>
-		</div>
 		<div id="show-seed" class="content scaffold-show" role="main">
 			<h1>${seedInstance.farmer.name}'s seed: ${seedInstance.name}</h1>
 			<g:if test="${flash.message}">

@@ -9,12 +9,6 @@
 	</head>
 	<body>
 		<a href="#list-farmer" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/farmer/list')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link action="show" id="${session.user.id}">${session.user.name}'s Bio</g:link></li>
-            </ul>
-		</div>
 		<div id="list-farmer" class="content scaffold-list" role="main">
 			<h1>All Farmers</h1>
 			<g:if test="${flash.message}">

@@ -106,6 +106,11 @@ class UserController {
             redirect(action: "login")
         }
     }
+
+    def logout = {
+        session.invalidate()
+        redirect(action: "index")
+    }
 }
 
 //login wrapper

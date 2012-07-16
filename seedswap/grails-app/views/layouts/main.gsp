@@ -19,6 +19,22 @@
 		<r:layoutResources />
 	</head>
 	<body>
+	    <%-- Navigation --%>
+		<g:if test="${session.user}">
+            <div class="nav" role="navigation">
+                <ul>
+                    <li><a class="home" href="${createLink(uri: '/farmer/list')}"><g:message code="default.home.label"/></a></li>
+                    <li><g:link action="show" id="${session.user.id}" controller="farmer">${session.user.name}'s Bio</g:link></li>
+                    <li>
+                        <g:form url='[controller: "Seed", action: "search"]' name="search">
+                            <input name="search" id="search" value="${seed?.search}" size="10"/> <input type="submit" value="Search" />
+                        </g:form>
+                    </li>
+                    <li style="float:right"><g:link controller="user" action="logout">Logout</g:link></li>
+                </ul>
+            </div>
+        </g:if>
+
 		<div id="layoutBody">
 		    <g:layoutBody/>
 		</div>
