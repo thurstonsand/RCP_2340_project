@@ -85,8 +85,15 @@ class SeedController {
 
     def search = {
         if(request.method == 'POST') {
-            def term = "%" + params.search + "%"
-            def search = Seed.findAllByNameIlikeOrScientificNameIlikeOrHardiness(term, term, params.search)
+            def sql = "from Seed where name like :term or scientificName like :term"
+            def sqlMap = [term: "%" + params.search + "%"]
+            try {
+                def hardiness = Integer.parseInt(params.search)
+                sqlMap.put("hardiness", hardiness)
+                sql += " or hardiness = :hardiness"
+            } catch(NumberFormatException e) {}
+
+            def search = Seed.findAll(sql, sqlMap)
             render(view: "search", model: [searchResultList: search, search: search.size()])
         } else {
             redirect(view: 'list')
