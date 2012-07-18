@@ -43,6 +43,7 @@ class SeedController {
         [seedInstance: seedInstance]
     }
 
+    //edits the seed
     def edit(Long id) {
         def seedInstance = Seed.get(id)
         if (!seedInstance) {
@@ -54,6 +55,7 @@ class SeedController {
         [seedInstance: seedInstance]
     }
 
+    //as of now, unused scaffold generated method
     def update(Long id, Long version) {
         def seedInstance = Seed.get(id)
         if (!seedInstance) {
@@ -83,6 +85,7 @@ class SeedController {
         redirect(action: "show", id: seedInstance.id)
     }
 
+    //searches by name, scientific name, and hardiness in the same search text field
     def search = {
         if(request.method == 'POST') {
             def sql = "from Seed where name like :term or scientificName like :term"

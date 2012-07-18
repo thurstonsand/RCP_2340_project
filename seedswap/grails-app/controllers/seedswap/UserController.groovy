@@ -9,7 +9,7 @@ class UserController {
             if(session.user.role == UserRole.ADMIN) {
                 redirect(action: "adminList", controller: "user")
             } else{
-                redirect(action: "list", controller: "farmer")
+                redirect(action: "list", controller: "seed")
             }
         } else {
             render(view: 'login')
@@ -60,7 +60,7 @@ class UserController {
                     if(user.role == UserRole.ADMIN) {
                         redirect(action: "adminList", controller: "user")
                     } else{
-                        redirect(action: "list", controller: "farmer")
+                        redirect(action: "list", controller: "seed")
                     }
 
                     return
@@ -84,7 +84,7 @@ class UserController {
             def msg = user && user.locked? "Your account has been locked" : "Login Failed"
             render(view: 'login', model: [msg: msg])
         } else if (session.user) {
-            redirect(action: "list")
+            redirect(action: "list", controller: "seed")
         }
     }
 

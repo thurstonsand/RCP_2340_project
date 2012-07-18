@@ -25,7 +25,7 @@
 		<g:if test="${session.user}">
             <div class="nav" role="navigation">
                 <ul>
-                    <li><a class="home" href="${createLink(uri: '/farmer/list')}"><g:message code="default.home.label"/></a></li>
+                    <li><a class="home" href="${createLink(uri: '/seed/list')}"><g:message code="default.home.label"/></a></li>
                     <li><g:link action="list" controller="seed">Seeds</g:link></li>
                     <li>
                         <g:form url='[controller: "Seed", action: "search"]' name="search">
